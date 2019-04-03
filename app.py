@@ -87,6 +87,6 @@ def receive():
   return jsonify(newdict)
     
 if __name__ == '__main__':
-    port = 8000 #the custom port you want
-    app.run(host='0.0.0.0', port=port)
-    
+    # port = 8000 #the custom port you want
+    # app.run(host='0.0.0.0', port=port)
+    app.run()
