@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, Response
 from pymongo import MongoClient
-from bson.json_util import dumps
 import pandas as pd
 import numpy as np
 import json
@@ -54,7 +53,7 @@ def update_machine():
 
   rows = []
   for doc in db.orderdata.find():
-    cur =  doc['order'].encode("ascii").split(',')
+    cur =  doc['order'].split(',')
     cur = list(map(int,cur))
     rows.append(cur)
   data = np.array(rows)    
