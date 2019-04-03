@@ -64,7 +64,7 @@ def recommendation(order):
   for i,val in enumerate(final):
     list.append(shopping_list(val))
   
-  print list
+  print(list)
   
   return final
   
