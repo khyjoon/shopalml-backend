@@ -1,0 +1,31 @@
+heroku
+kimpeter1!
+
+FLASK_APP=app.py flask run
+
+sudo pip3 install pymongo
+pip3 freeze > requirements.txt
+
+  0 : "banana"
+  1 : "apple, gala"
+  2 : "tomato, roma"
+  3 : "cucumber, seedless"
+  4 : "orange, seedless"
+  5 : "great value half & half cream"
+  6 : "lucern 2% milk"
+  7 : "kraft foods canada kraft"
+  8 : "astro original balkan style yogurt"
+  9 : "goldegg free run large eggs"
+  10 : "dempster's everything bagels"
+  11 : "dempster's white bread"
+  12 : "pringles sour cream n onion"
+  13 : "your fresh market lean ground beef"
+  14 : "boneless chicken breasts"
+  15 : "wild sockeye salmon fillet"
+  16 : "coca cola"
+  17 : "pepsi"
+  18 : "red bull energy drink"
+
+numpy:
+np.vstack(a, [3,5,6])
+np.hstack(a, [1,2,4])
