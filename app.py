@@ -6,6 +6,7 @@ import numpy as np
 import json
 import re
 import bson
+
 #import string
 
 from machinelearn import machinetrain, recommendation, calculate_similarity, shopping_list
