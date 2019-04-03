@@ -18,27 +18,35 @@ app = Flask(__name__)
 
 @app.route("/get_recommendation", methods = ['POST'])
 def get_recommendation():
-  try:
-    #data = json.loads(request.data)
-    # data = request.form.get('order')
-    data = request.form['order']
-    order = data['order']
-    reclist = []
-    reclist = recommendation(order) # return an index list of recommended items   
-    # Send POST request 
-    #r = requests.post("http://example.com", data=reclist)  
-    
-    # insert into DB
-    db.orderdata.insert_one(order)
-    update_machine()
-    
-    resp = jsonify(order)
-    resp.status_code = 200
-    
-    return resp
-  except Exception, e:
-    print "Failure"
-    
+  # try:
+  data = request.get_json()
+  order = data['order']     # receive order field
+  id = data['_id']          # receive id field
+  
+  reclist = recommendation(order) # return an index list of recommended items   
+  
+  # turn all items in order to 0
+  for i in range(len(order)):
+    order[i] = 0
+  
+  for var in reclist:
+    order[var] = 1
+  
+  # Send POST request 
+  # order[0] = 100
+  # order[1] = 200
+  # insert into DB
+  orderstr = ','.join(map(str, order)) 
+  db.orderdata.insert_one({'order': orderstr})
+  update_machine()
+  
+  responseDict = { "order": order,        # create a dictionary. NOTE: python dict is a json Object
+                    "_id" : id}
+                    
+  return jsonify(responseDict)
+# except Exception, e:
+  # return 'Failure'
+  
     
 def update_machine():
   print("updatetime")
@@ -58,10 +66,25 @@ def update_machine():
 def hello():
     data = {
         'hello'  : 'world',
-        'number' : 3
+        'number' : 3,
+        'order' : 2
     }
 
     return jsonify(data)    
+    
+@app.route('/receive', methods = ['POST'])
+def receive():
+  data = request.get_json()
+  order = data['order']
+  id = data['_id']
+  
+  for i in range(len(order)):
+    order[i] = 0
+    
+  newdict = { "order": order,
+              "_id" : id}
+  
+  return jsonify(newdict)
     
 if __name__ == '__main__':
     port = 8000 #the custom port you want

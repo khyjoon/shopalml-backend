@@ -31,7 +31,7 @@ def shopping_list(index):
 
 # find the recommended item out of the already trained data
 def recommendation(order):
-  data_matrix = pd.read_csv('data/traineddata.csv') #pd.read_csv('https://raw.githubusercontent.com/cambridgecoding/machinelearningregression/master/data/bikes.csv')
+  data_matrix = pd.read_csv('data/traineddata.csv') 
   
   rows = []
   for index, row in data_matrix.iterrows():
