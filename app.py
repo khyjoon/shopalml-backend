@@ -5,7 +5,6 @@ import numpy as np
 import json
 import re
 import bson
-from git import Repo
 
 #import string
 
