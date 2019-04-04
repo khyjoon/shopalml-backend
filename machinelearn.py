@@ -58,8 +58,15 @@ def recommendation(order):
   ranks = sorted([(x,i) for (i,x) in enumerate(finalCol)], reverse=True)
   # create index list of recommended items
   final = []
-  for val,i in ranks[:3]:
-    final.append(i)
+  count = 0
+  for val,i in ranks:
+    if order[i] != 1 and count < 3:
+      final.append(i)
+      count+=1
+  
+  if not final:   # check empty list
+    for val,i in ranks[:3]:
+      final.append(i)
   
   print("Your recommendation vector");
   print(final)
