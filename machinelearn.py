@@ -4,6 +4,9 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy import sparse
 
+from pymongo import MongoClient
+client = MongoClient("mongodb+srv://kimpeter:kimpeter@cluster0-lux2o.gcp.mongodb.net/machinetime?retryWrites=true")
+db = client.machinetime
 
 def shopping_list(index):
   return {
