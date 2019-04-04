@@ -35,28 +35,13 @@ def get_recommendation():
   # insert into DB
   orderstr = ','.join(map(str, order)) 
   db.orderdata.insert_one({'order': orderstr})
-  update_machine()
   
   responseDict = { "order": order,        # create a dictionary. NOTE: python dict is a json Object
                     "_id" : id}
                     
   return jsonify(responseDict)
   
-    
-def update_machine():
-  print("updatetime")
-
-  rows = []
-  for doc in db.orderdata.find():
-    cur =  doc['order'].split(',')
-    cur = list(map(int,cur))
-    rows.append(cur)
-  data = np.array(rows)    
-  data = pd.DataFrame(data)
-  print(data)
-  # TRAIN DATA
-  machinetrain(data)
-
+  
 # testing routes  
 @app.route('/hello', methods = ['GET'])
 def hello():
@@ -83,8 +68,6 @@ def receive():
   return jsonify(newdict)
 # end of testing routes
 
-  
-update_machine()    
     
 if __name__ == '__main__':
     # port = 8000 #the custom port you want

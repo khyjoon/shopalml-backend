@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy import sparse
 
+
 def shopping_list(index):
   return {
     0 : "banana",
@@ -69,6 +70,23 @@ def recommendation(order):
   return final
   
   
+# update machine 
+def update_machine():
+  print("updatetime")
+
+  rows = []
+  for doc in db.orderdata.find():
+    cur =  doc['order'].split(',')
+    cur = list(map(int,cur))
+    rows.append(cur)
+  data = np.array(rows)    
+  data = pd.DataFrame(data)
+  print(data)
+  # TRAIN DATA
+  data_matrix = machinetrain(data)
+  return data_matrix
+ 
+ 
 # method to train data
 def machinetrain(data_items): # data_items is a DataFrame
   ### item-item collaborative filtering ###
@@ -81,7 +99,7 @@ def machinetrain(data_items): # data_items is a DataFrame
 
   print(data_matrix)
   # Build csv file
-  data_matrix.to_csv('data/traineddata.csv')
+  #data_matrix.to_csv('data/traineddata.csv')
   return data_matrix
   
 
