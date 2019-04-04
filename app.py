@@ -5,6 +5,7 @@ import numpy as np
 import json
 import re
 import bson
+from git import Repo
 
 #import string
 
@@ -32,9 +33,6 @@ def get_recommendation():
   for var in reclist:
     order[var] = 1
   
-  # Send POST request 
-  # order[0] = 100
-  # order[1] = 200
   # insert into DB
   orderstr = ','.join(map(str, order)) 
   db.orderdata.insert_one({'order': orderstr})
@@ -44,8 +42,6 @@ def get_recommendation():
                     "_id" : id}
                     
   return jsonify(responseDict)
-# except Exception, e:
-  # return 'Failure'
   
     
 def update_machine():
@@ -61,7 +57,8 @@ def update_machine():
   print(data)
   # TRAIN DATA
   machinetrain(data)
-    
+
+# testing routes  
 @app.route('/hello', methods = ['GET'])
 def hello():
     data = {
@@ -85,7 +82,9 @@ def receive():
               "_id" : id}
   
   return jsonify(newdict)
-    
+# end of testing routes
+
+  
 update_machine()    
     
 if __name__ == '__main__':

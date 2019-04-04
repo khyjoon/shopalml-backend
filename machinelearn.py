@@ -31,8 +31,8 @@ def shopping_list(index):
 
 # find the recommended item out of the already trained data
 def recommendation(order):
-  data_matrix = pd.read_csv('data/traineddata.csv') 
-  
+  #data_matrix = pd.read_csv('data/traineddata.csv') 
+  data_matrix = update_machine()
   rows = []
   for index, row in data_matrix.iterrows():
     curRow = []
@@ -82,6 +82,8 @@ def machinetrain(data_items): # data_items is a DataFrame
   print(data_matrix)
   # Build csv file
   data_matrix.to_csv('data/traineddata.csv')
+return data_matrix
+  
 
     
 def calculate_similarity(data_items): # data_items is a DataFrame
