@@ -15,7 +15,7 @@ db = client.machinetime
 
 app = Flask(__name__)
     
-
+    
 @app.route("/get_recommendation", methods = ['POST'])
 def get_recommendation():
   # try:
@@ -85,6 +85,8 @@ def receive():
               "_id" : id}
   
   return jsonify(newdict)
+    
+update_machine()    
     
 if __name__ == '__main__':
     # port = 8000 #the custom port you want
